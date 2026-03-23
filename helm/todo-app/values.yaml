@@ -1,0 +1,35 @@
+# Кількість реплік застосунку
+replicaCount: 1
+
+image:
+  repository: todo-app
+  tag: latest
+  pullPolicy: Never   # локальний образ у minikube
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8080
+
+# Налаштування підключення до БД (bitnami/postgresql)
+database:
+  host: pg-postgresql   # ім'я сервісу bitnami (pg = назва helm release)
+  port: 5432
+  name: tododb
+  username: postgres
+  password: postgres
+
+# Spring Boot змінні середовища
+env:
+  SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+# Probes
+readinessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  failureThreshold: 5
+
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 15
+  failureThreshold: 3
