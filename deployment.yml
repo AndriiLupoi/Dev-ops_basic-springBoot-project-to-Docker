@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-app
+  name: todo-app-argocd
   namespace: default
   labels:
-    app: todo-app
+    app: todo-app-argocd
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: todo-app1
+      app: todo-app-argocd
   template:
     metadata:
       labels:
-        app: todo-app2
+        app: todo-app-argocd
     spec:
       containers:
-        - name: todo-app
+        - name: todo-app-argocd
           image: nginx:1.25
           ports:
-            - containerPort: 90
+            - containerPort: 80
           resources:
             requests:
               cpu: "100m"
