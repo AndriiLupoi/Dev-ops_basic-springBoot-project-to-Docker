@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app
+  namespace: default
+  labels:
+    app: todo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo-app1
+  template:
+    metadata:
+      labels:
+        app: todo-app2
+    spec:
+      containers:
+        - name: todo-app
+          image: nginx:1.25
+          ports:
+            - containerPort: 90
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
