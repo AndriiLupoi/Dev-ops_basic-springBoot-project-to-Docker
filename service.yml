@@ -5,8 +5,8 @@ metadata:
   namespace: default
 spec:
   selector:
-    app: todo-app
+    app: todo-app-argocd
   ports:
-    - port: 90
-      targetPort: 90
+    - port: 80
+      targetPort: 80
   type: ClusterIP
