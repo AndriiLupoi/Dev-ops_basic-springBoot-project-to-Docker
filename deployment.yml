@@ -6,7 +6,7 @@ metadata:
   labels:
     app: todo-app-argocd
 spec:
-  replicas: 3
+  replicas: 9
   selector:
     matchLabels:
       app: todo-app-argocd
